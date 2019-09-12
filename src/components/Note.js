@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, {  useContext } from 'react';
 import NotesContext from '../context/notes-context';
+import useMousePosition from '../customhooks/useMousePosition'
 
 const Note = ( {note}) => {
+    const position = useMousePosition();
     // useEffect(()=> {
     //     //debugger;
     //     console.log('Setting up effect') // Аналог mount компонента - выполняется (второй параметр [])
@@ -15,6 +17,7 @@ const Note = ( {note}) => {
         <div> 
         <h3>{note.title}</h3>
         <p>{note.body}</p>
+        <p>{position.x}, {position.y}</p>
         <button onClick={()=>dispatch({type: 'REMOVE_NOTE', title: note.title})}>x</button>
     </div>
     )
